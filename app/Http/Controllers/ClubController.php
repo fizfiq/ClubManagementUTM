@@ -59,15 +59,16 @@ class ClubController extends Controller
     }
 
     public function update($id,Request $request)
-    {
-        $save = ClubModel::getSingle($id);
-        $save->name = trim($request->name);
-        $save->email = trim($request->email);
-        $save->type = trim($request->type);
-        $save->status = trim($request->status);
-        $save->save();
+{
+    $save = ClubModel::getSingle($id);
+    $save->name = trim($request->name);
+    $save->email = trim($request->email);
+    $save->type = trim($request->type);
+    $save->status = trim($request->status);
+    $save->save();
 
-        $club = User::where('email', $save->email)->first();
+    $club = User::where('email', $save->email)->first();
+    if ($club) {
         $club->name = trim($request->name);
         $club->email = trim($request->email);
         if(!empty($request->password))
@@ -75,16 +76,35 @@ class ClubController extends Controller
             $club->password = Hash::make($request->password);
         }
         $club->save();
-
-        return redirect('admin/club/list')->with('success', "Club successfully Updated");
+    } else {
+        abort(404);
+        // handle the case where the user is not found, e.g., log a warning, show an error message, etc.
     }
+
+    return redirect('admin/club/list')->with('success', "Club successfully Updated");
+}
 
     public function delete($id)
     {
-        $save = ClubModel::getSingle($id);
+        /*$save = ClubModel::getSingle($id);
         $save->is_delete = 1;
         $save->save();
 
-        return redirect()->back()->with('success', "Club Successfully Deleted");
+        $club = User::where('email', $save->email)->first();
+        $club->is_delete = 1;
+        $club->save();*/
+
+        $save = ClubModel::getSingle($id);
+
+        if ($save) {
+            $club = User::find($save->user_id);
+            if ($club) {
+                $club->delete();
+            }
+            $save->delete();
+            return redirect()->back()->with('success', "Club Successfully Deleted");
+        } else {
+            return redirect()->back()->with('error', "Club not found");
+        }
     }
 }
