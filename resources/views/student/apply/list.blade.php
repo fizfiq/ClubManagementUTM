@@ -78,6 +78,7 @@
                                                 <th>Club Name</th>
                                                 <th>Club Type</th>
                                                 <th>Status</th>
+                                                <th>Comment</th>
                                                 <th>Created By</th>
                                                 <th>Created date</th>
                                                 <th>Updated Date</th>
@@ -99,6 +100,7 @@
                                                             Reject
                                                         @endif
                                                     </td>
+                                                    <td>{{ $value->comment }}</td>
                                                     <td>{{ $value->created_by_name }}</td>
                                                     <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td>
                                                     <td>{{ date('d-m-Y H:i A', strtotime($value->updated_at)) }}</td>

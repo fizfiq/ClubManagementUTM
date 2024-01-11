@@ -23,6 +23,7 @@ class CLubVerifyController extends Controller
 
     public function edit($id)
     {
+        $data['getApply'] = ApplyClubModel::getSingle($id);
         $data['header_title'] = "Edit Status Application Club";
         return view('hep.verify.edit', $data);
         
@@ -32,21 +33,34 @@ class CLubVerifyController extends Controller
     {
         $request->validate([
             'status' => 'required',
+            'comment' => 'required',
         ]);
 
+        $statusValues = [
+            'Pending' => 0,
+            'Approved' => 1,
+            'Rejected' => 2,
+        ];
+
+        if (!array_key_exists($request->status, $statusValues)) {
+        // Return an error message if the status value is not valid
+        return redirect('hep/verify/list')->with('error', 'Invalid status value.');
+        }
+
         $updateData = [
-            'status' => $request->status,
+            'status' => $statusValues[$request->status],
+            'comment' => $request->comment,
         ];
 
         ApplyClubModel::where('id', $id)->update($updateData);
 
-        return redirect()->route('hep.verify.list')->with('success', 'Application Status Updated Successfully.');
+        return redirect('hep/verify/list')->with('success', 'Application Status Updated Successfully.');
     }
 
     public function delete($id)
     {
         ApplyClubModel::where('id', $id)->delete();
 
-        return redirect()->route('hep.verify.list')->with('success', 'Application Deleted Successfully.');
+        return redirect('hep/verify/list')->with('success', 'Application Deleted Successfully.');
     }
 }

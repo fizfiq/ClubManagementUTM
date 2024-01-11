@@ -25,7 +25,12 @@
                             <div class="card-body">
                                 <div class="mb-3">
                                     <label for="club_name">Club Name:</label>
-                                    <input type="text" class="form-control" id="" name="name" required placeholder="Name">
+                                        @if ($errors->has('name'))
+                                            <div class="alert alert-danger">
+                                                {{ $errors->first('name') }}
+                                            </div>
+                                        @endif
+                                            <input type="text" class="form-control" id="" name="name" required placeholder="Name">
                                 </div>
                                 <div class="mb-3">
                                     <label>Club Type</label>
@@ -43,12 +48,12 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="description">Description:</label>
-                                    <textarea class="form-control" id="" name="description" rows="5" required></textarea>
+                                    <textarea class="form-control" id="" name="description" rows="5" required value="{{ old('description') }}"></textarea>
                                 </div>
 
                                 <div class="mb-3">
                                     <label>Proposal</label>
-                                    <input type="file" class="form-control" name="proposal" value="{{ old('proposal') }}" required placeholder="proposal">
+                                    <input type="file" class="form-control" name="proposal" accept=".pdf, .doc, .docx" value="{{ old('proposal') }}" required placeholder="proposal">
                                 </div>
                                 <div class="mb-3">
                                     <button type="submit" class="btn btn-primary">Submit Application</button>    

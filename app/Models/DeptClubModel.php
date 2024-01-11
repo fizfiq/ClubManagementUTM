@@ -20,7 +20,7 @@ class DeptClubModel extends Model
 
     static public function getRecord()
     {
-        $return = self::select('dept_club.*', 'department.name as dept_name', 'club.name as club_name', 'users.name as created_by_name')
+        $return = self::select('dept_club.*', 'department.dept_name as dept_name', 'club.name as club_name', 'users.name as created_by_name')
                     ->join('club', 'club.id', '=', 'dept_club.club_id')
                     ->join('department', 'department.id', '=', 'dept_club.dept_id')
                     ->join('users', 'users.id', '=', 'dept_club.created_by')
@@ -28,7 +28,7 @@ class DeptClubModel extends Model
 
                     if(!empty(Request::get('dept_name')))
                     {
-                        $return = $return->where('department.name', 'like', '%' .Request::get('dept_name').'%');
+                        $return = $return->where('department.dept_name', 'like', '%' .Request::get('dept_name').'%');
                     }
                     if(!empty(Request::get('club_name')))
                     {

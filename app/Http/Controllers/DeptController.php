@@ -95,6 +95,10 @@ class DeptController extends Controller
         $save->is_delete = 1;
         $save->save();
 
+        $dept = User::where('email', $save->email)->first();
+        $dept->is_delete = 1;
+        $dept->save();
+
         return redirect()->back()->with('success', "Department Successfully Deleted");
     }
 }

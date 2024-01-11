@@ -7,7 +7,7 @@
                 <div class="container-fluid"><!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="mb-0">Department List </h3>
+                            <h3 class="mb-0">Department List (Total : {{ $getRecord->total() }})</h3>
                         </div>
                         <div class="col-sm-6" style="text-align: right;">
                             <a href="{{ asset('admin/dept/add') }}" class="btn btn-primary">Add New Department</a>

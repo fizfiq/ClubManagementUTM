@@ -47,7 +47,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label>Proposal</label>
-                                            <input type="file" class="form-control" name="proposal" value="{{ $getRecord->proposal }}" required placeholder="proposal">
+                                            <input type="file" class="form-control" name="proposal" accept=".pdf, .doc, .docx" value="{{ $getRecord->proposal }}" required placeholder="proposal">
                                         </div>
                                     </div><!--end::Body--><!--begin::Footer-->
                                     <div class="card-footer"><button type="submit" class="btn btn-primary">Update</button></div><!--end::Footer-->

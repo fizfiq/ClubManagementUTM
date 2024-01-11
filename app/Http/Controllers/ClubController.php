@@ -86,14 +86,7 @@ class ClubController extends Controller
 
     public function delete($id)
     {
-        /*$save = ClubModel::getSingle($id);
-        $save->is_delete = 1;
-        $save->save();
-
-        $club = User::where('email', $save->email)->first();
-        $club->is_delete = 1;
-        $club->save();*/
-
+        
         $save = ClubModel::getSingle($id);
 
         if ($save) {

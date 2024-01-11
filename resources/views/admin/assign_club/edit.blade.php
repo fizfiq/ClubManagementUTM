@@ -28,7 +28,7 @@
                                             <select class="form-select" name="dept_id" required>
                                                 <option value="">Select Department</option>
                                                 @foreach($getDept as $dept)
-                                                <option {{ ($getRecord->dept_id == $dept->id) ? 'selected' : '' }} value="{{ $dept->id }}">{{ $dept->name }}</option>
+                                                <option {{ ($getRecord->dept_id == $dept->id) ? 'selected' : '' }} value="{{ $dept->id }}">{{ $dept->dept_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

@@ -27,20 +27,21 @@
                                             <label>Department Name</label>
                                             <select class="form-select" name="dept_id" required>
                                                 <option value="">Select Department</option>
-                                                @foreach($getFaculty as $dept)
-                                                <option value="{{ $dept->id }}">{{ $dept->name }}</option>
+                                                @foreach($getDept as $dept)
+                                                <option value="{{ $dept->id }}">{{ $dept->dept_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="mb-3">
+                                        <div class="club-list">
                                             <label>Club Name</label>
-                                            
+                                            <div class="club-checkboxes">
                                                 @foreach($getClub as $club)
-                                                    <div>
-                                                        <input type="checkbox" value="{{ $club->id }}" name="club_id[]"> {{ $club->name }}
+                                                    <div class="checkbox-item">
+                                                        <input type="checkbox" value="{{ $club->id }}" name="club_id[]" id="club{{ $club->id }}">
+                                                        <label for="club{{ $club->id }}">{{ $club->name }}</label>
                                                     </div>
                                                 @endforeach
-                                            
+                                            </div>
                                         </div>
                                         <div class="mb-3">
                                             <label>Status</label>

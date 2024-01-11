@@ -1,0 +1,68 @@
+.club-list {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.club-list label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.club-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 50px;
+}
+
+.checkbox-item {
+    position: relative;
+    padding-left: 30px;
+    padding-top: 10px; /* added padding-top */
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.checkbox-item input[type="checkbox"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkbox-item label {
+    position: relative;
+    text-align: center;
+    margin-bottom: 5px; /* added margin-bottom */
+}
+
+.checkbox-item label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.checkbox-item input[type="checkbox"]:checked + label:before {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.checkbox-item input[type="checkbox"]:checked + label:after {
+    content: '';
+    position: relative;
+    left: 8px;
+    top: 12px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}

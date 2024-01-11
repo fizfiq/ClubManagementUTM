@@ -23,6 +23,7 @@ class ApplyClubModel extends Model
     static public function getRecord()
     {
         $userId = Auth::id();
+        
         $return = ApplyClubModel::select('apply_club.*', 'users.name as created_by_name')
                     ->join('users', 'users.id','=', 'apply_club.created_by')
                     ->where('apply_club.created_by','=',$userId);
@@ -38,9 +39,13 @@ class ApplyClubModel extends Model
                     {
                         $return = $return->whereDate('apply_club.created_at','=',Request::get('date'));
                     }
+                    if(!empty(Request::get('comment')))
+                    {
+                        $return = $return->where('apply_club.comment','like',Request::get('comment'));
+                    }
 
         $return = $return->where('apply_club.is_delete', '=', 0)
-                    ->where('apply_club.status', '=', 0)
+                    ->whereIn('apply_club.status', [0, 1, 2])
                     ->orderBy('apply_club.id', 'desc')
                     ->paginate(10);
 
@@ -63,9 +68,13 @@ class ApplyClubModel extends Model
                     {
                         $return = $return->whereDate('apply_club.created_at','=',Request::get('date'));
                     }
+                    if(!empty(Request::get('comment')))
+                    {
+                        $return = $return->where('apply_club.comment','like',Request::get('comment'));
+                    }
 
         $return = $return->where('apply_club.is_delete', '=', 0)
-                    ->where('apply_club.status', '=', 0)
+                    ->whereIn('apply_club.status', [0, 1, 2])
                     ->orderBy('apply_club.id', 'desc')
                     ->paginate(10);
 

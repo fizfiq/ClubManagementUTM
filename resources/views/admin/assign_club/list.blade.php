@@ -7,7 +7,7 @@
                 <div class="container-fluid"><!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="mb-0">Assign Club</h3>
+                            <h3 class="mb-0">Assign Club (Total : {{ $getRecord->total() }})</h3>
                         </div>
                         <div class="col-sm-6" style="text-align: right;">
                             <a href="{{ asset('admin/assign_club/add') }}" class="btn btn-primary">Add New Assign Club</a>

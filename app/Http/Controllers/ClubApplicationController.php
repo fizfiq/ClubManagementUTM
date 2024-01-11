@@ -29,9 +29,22 @@ class ClubApplicationController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
-        /*request()->validate([
-            'name' => 'required|name|unique:club'
-        ]);*/
+        $user_id = Auth::user()->id;
+        $existing_applications = ApplyClubModel::where('created_by', $user_id)->where('is_delete', 0)->count();
+        $request->request->remove('comment');
+        
+        if ($existing_applications >= 2) {
+            $deleted_applications = ApplyClubModel::where('created_by', $user_id)->where('is_delete', 1)->count();
+            if ($deleted_applications >= 1) {
+                return redirect('student/apply/list')->with('error', 'You have reached the maximum limit of active club applications. However, you can restore one of your previously deleted applications and edit it.');
+            } else {
+                return redirect('student/apply/list')->with('error', 'You have reached the maximum limit of club applications.');
+            }
+        }
+        request()->validate([
+            'name' => 'required|alpha|unique:club'
+        ]);
+
         $save = new ApplyClubModel;
         $save->name = trim($request->name);
         $save->type = trim($request->type);
@@ -83,6 +96,16 @@ class ClubApplicationController extends Controller
         $save->type = trim($request->type);
         $save->description = trim($request->description);
         $save->proposal = trim($request->proposal);
+        if(!empty($request->file('proposal')))
+        {
+            $ext = $request->file('proposal')->getClientOriginalExtension();
+            $file = $request->file('proposal');
+            $randomStr = date('Ymdhis').Str::random(20);
+            $filename = strtolower($randomStr).'.'.$ext;
+            $file->move(public_path('upload/application/'), $filename);
+
+            $save->proposal = $filename;            
+        }
         $save->save();
 
         return redirect('student/apply/list')->with('success', "Application successfully Updated");

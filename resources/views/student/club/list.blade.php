@@ -7,12 +7,9 @@
                 <div class="container-fluid"><!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="mb-0">Club List (Total : {{ $getRecord->total() }})</h3>
+                            <h3 class="mb-0">Club </h3>
                         </div>
-                        <div class="col-sm-6" style="text-align: right;">
-                            <a href="{{ asset('admin/club/add') }}" class="btn btn-primary">Add New Club</a>
-                        </div>
-                        
+                                                
                     </div><!--end::Row-->
  
                 </div><!--end::Container-->
@@ -27,7 +24,7 @@
                         
                         
                             <div class="card card-outline mb-4"><!--begin::Header-->
-                            <div class="card-header">
+                                <div class="card-header">
                                     <h3 class="card-title">Search Club</h3>
                                 </div>
                                 <!--begin::Form-->
@@ -35,22 +32,8 @@
                                     <div class="card-body">
                                       <div class="row">
                                         <div class="form-group col-md-3">
-                                            <label >Name</label>
-                                            <input type="text" class="form-control" name="name" value="{{ Request::get('name') }}" placeholder="Name">
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                        <label>Club Type</label>
-                                            <select class="form-select" name="type">
-                                                <option value="">Select Type</option>
-                                                <option {{ Request::get('type') == 'Sport' ? 'selected' : '' }} value="Sport">Sport</option>
-                                                <option {{ Request::get('type') == 'Leadership' ? 'selected' : '' }} value="Leadership">Leadership</option>
-                                                <option {{ Request::get('type') == 'Entrepreneur' ? 'selected' : '' }} value="Entrepreneur">Entrepreneur</option>
-                                                <option {{ Request::get('type') == 'Culture' ? 'selected' : '' }} value="Culture">Culture</option>
-                                                <option {{ Request::get('type') == 'Award' ? 'selected' : '' }} value="Award">Award</option>
-                                                <option {{ Request::get('type') == 'Career' ? 'selected' : '' }} value="Career">Career</option>
-                                                <option {{ Request::get('type') == 'Innovation' ? 'selected' : '' }} value="Innovation">Innovation</option>
-                                                <option {{ Request::get('type') == 'Academic' ? 'selected' : '' }} value="Academic">Academic</option>
-                                            </select>
+                                            <label >Club Name</label>
+                                            <input type="text" class="form-control" name="name" value="{{ Request::get('name') }}" placeholder="Club Name">
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label>Date</label>
@@ -58,14 +41,51 @@
                                         </div>
                                         <div class="form-group col-md-3">
                                             <button class="btn btn-primary" type="submit" style="margin-top: 23px;">Search</button>
-                                            <a href="{{ asset('admin/club/list') }}" class="btn btn-success" style="margin-top: 23px;">Reset</a>
+                                            <a href="{{ asset('student/club/list') }}" class="btn btn-success" style="margin-top: 23px;">Reset</a>
                                         </div>
                                       </div>                                          
                                     </div><!--end::Body-->
                                 </form><!--end::Form-->
                             </div><!--end::Quick Example--><!--begin::Input Group-->
-                            
-                        @include('_message')
+                            <div class="card card-outline mb-4">
+                                <div class="card-header">
+                                    <h3 class="card-title">Join List</h3>
+                                </div><!-- /.card-header -->
+                                <div class="card-body">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 10px">#</th>
+                                                <th>Club Name</th>
+                                                <th>Position</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          <!--  @foreach($getRecord as $value)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $value->name }}</td>
+                                                    <td>
+                                                        @if($value->position == 0)
+                                                            Club Members
+                                                        @elseif($value->position == 1)
+                                                            Commitee Members
+                                                        @elseif($value->position == 2)
+                                                            High Commitee Members
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                    
+                                                    </td>
+                                                </tr>
+                                            @endforeach -->
+                                        </tbody>
+                                    </table>
+                                   
+                                </div><!-- /.card-body -->
+                            </div>
+                            @include('_message')
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <h3 class="card-title">Club List</h3>
@@ -76,11 +96,9 @@
                                             <tr>
                                                 <th style="width: 10px">#</th>
                                                 <th>Club Name</th>
-                                                <th>Club Type</th>
                                                 <th>Status</th>
-                                                <th>Created By</th>
-                                                <th>Created date</th>
-                                                <th>Updated Date</th>
+                                                <th>Participant</th>
+                                                <th>Created At</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -89,7 +107,6 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $value->name }}</td>
-                                                    <td>{{ $value->type }}</td>
                                                     <td>
                                                         @if($value->status == 0)
                                                             Active
@@ -97,12 +114,11 @@
                                                             Inactive
                                                         @endif
                                                     </td>
-                                                    <td>{{ $value->created_by_name }}</td>
+                                                    <td> participant </td>
                                                     <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td>
-                                                    <td>{{ date('d-m-Y H:i A', strtotime($value->updated_at)) }}</td>
                                                     <td>
-                                                    <a href="{{ asset('admin/club/edit/'.$value->id) }}" class="btn btn-primary">Edit</a>
-                                                    <a href="{{ asset('admin/club/delete/'.$value->id) }}" class="btn btn-danger">Delete</a>
+                                                    <a href="#" id="join-button-{{ $value->id }}" class="btn btn-primary" data-club-id="{{ $value->id }}">Join</a>
+                                                    <a href="{{ asset('student/club/detail/'.$value->id) }}" class="btn btn-success">Details</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -122,4 +138,20 @@
                 </div><!--end::Container-->
             </div><!--end::App Content-->
         </main><!--end::App Main-->
+        <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var joinButtons = document.querySelectorAll('.btn-primary');
+        
+        for (var i = 0; i < joinButtons.length; i++) {
+            joinButtons[i].addEventListener('click', function(event) {
+                event.preventDefault();
+                var clubId = this.getAttribute('data-club-id');
+                
+                if (confirm("Are you sure you want to join this club?")) {
+                    window.location.href = "{{ url('student/club/join') }}/" + clubId;
+                }
+            });
+        }
+    });
+</script>
 @endsection

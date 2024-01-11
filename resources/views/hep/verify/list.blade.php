@@ -7,7 +7,7 @@
                 <div class="container-fluid"><!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="mb-0">Application List </h3>
+                            <h3 class="mb-0">Application List (Total : {{ $getApply->total() }})</h3>
                         </div>
                         
                         
@@ -76,6 +76,7 @@
                                                 <th>Club Name</th>
                                                 <th>Club Type</th>
                                                 <th>Status</th>
+                                                <th>Comment</th>
                                                 <th>Created By</th>
                                                 <th>Created date</th>
                                                 <th>Updated Date</th>
@@ -98,6 +99,7 @@
                                                             Reject
                                                         @endif
                                                     </td>
+                                                    <td>{{ $value->comment }}</td>
                                                     <td>{{ $value->created_by_name }}</td>
                                                     <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td>
                                                     <td>{{ date('d-m-Y H:i A', strtotime($value->updated_at)) }}</td>

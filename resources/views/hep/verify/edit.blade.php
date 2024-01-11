@@ -30,17 +30,17 @@
                                 <div class="card-body">
                                     <form method="post" action="">
                                     {{ csrf_field() }}
-                                        
-                                        <div class="form-group">
+                                        <div class="card-body">
+                                        <div class="mb-3">
                                             <label>Name</label>
-                                            <input type="text" class="form-control" name="name" value="{{ $getApply->name }}" required placeholder="Club Name">
+                                            <div class="form-control" readonly>{{ $getApply->name }}</div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="mb-3">
                                             <label>Club Type</label>
-                                            <input type="text" class="form-control" name="type" value="{{ $getApply->type }}" required placeholder="Club Type">
+                                            <div class="form-control" readonly>{{ $getApply->type }}</div>
                                         </div>
                                         
-                                        <div class="form-group">
+                                        <div class="mb-3">
                                             <label>Status</label>
                                             <select class="form-select" name="status">
                                                 <option value="">Select Status</option>
@@ -49,11 +49,16 @@
                                                 <option {{ ($getApply->status == '2') ? 'selected' : '' }} value="Rejected">Rejected</option>
                                             </select>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="mb-3">
                                             <label>Description</label>
-                                            <textarea class="form-control" name="description" rows="3" >{{ $getApply->description }}</textarea>
+                                            <div class="form-control" readonly >{{ $getApply->description }}</div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <div class="mb-3">
+                                            <label>Comments</label>
+                                            <textarea class="form-control" name="comment" rows="3" >{{ old('comment') }}</textarea>
+                                        </div>
+                                        </div>
+                                        <div class="card-footer"><button type="submit" class="btn btn-primary">Update</button></div><!--end::Footer-->
                                     </form>
                                 </div><!-- /.card-body -->
                                 

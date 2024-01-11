@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\DeptClubController;
+use App\Http\Controllers\JoinClubController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ClubVerifyController;
 use App\Http\Controllers\ClubApplicationController;
@@ -121,7 +122,15 @@ Route::group(['middleware' => 'student'], function (){
     Route::get('student/apply/edit/{id}', [ClubApplicationController::class, 'edit']);
     Route::post('student/apply/edit/{id}', [ClubApplicationController::class, 'update']);
     Route::get('student/apply/delete/{id}', [ClubApplicationController::class, 'delete']);
-    
+
+    //url club 
+    Route::get('student/club/list', [JoinClubController::class, 'list']);
+    Route::get('student/club/join', [JoinClubController::class, 'application']);
+    Route::post('student/club/join', [JoinClubController::class, 'store']);
+    Route::get('student/club/edit/{id}', [JoinClubController::class, 'edit']);
+    Route::post('student/club/edit/{id}', [JoinClubController::class, 'update']);
+    Route::get('student/club/detail/{id}', [JoinClubController::class, 'detail']);
+
     Route::get('student/change_password', [UserController::class, 'change_password']);
     Route::post('student/change_password', [UserController::class, 'update_change_password']);
 
