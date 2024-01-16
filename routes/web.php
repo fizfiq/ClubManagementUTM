@@ -125,8 +125,8 @@ Route::group(['middleware' => 'student'], function (){
 
     //url club 
     Route::get('student/club/list', [JoinClubController::class, 'list']);
-    Route::get('student/club/join', [JoinClubController::class, 'application']);
-    Route::post('student/club/join', [JoinClubController::class, 'store']);
+    Route::post('student/club/join/{id}', [JoinClubController::class, 'joinClub']);
+    //Route::post('student/club/join/{id}', [JoinClubController::class, 'joinClub']);
     Route::get('student/club/edit/{id}', [JoinClubController::class, 'edit']);
     Route::post('student/club/edit/{id}', [JoinClubController::class, 'update']);
     Route::get('student/club/detail/{id}', [JoinClubController::class, 'detail']);

@@ -3,11 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Request;
+use App\Models\ClubModel;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use Request;
 
 class User extends Authenticatable
 {
@@ -109,12 +110,9 @@ class User extends Authenticatable
         return User::where('remember_token','=',$remember_token)->first();
     }
     
-    /*static public function createStudent($data)
+    public function clubs()
     {
-        $studentId = StudentIdGenerator::generateStudentId();
-        $data['student_id'] = $studentId;
-        $data['user_type'] = 3; // Assuming 3 is the user_type for students
+        return $this->belongsToMany(ClubModel::class, 'user_clubs', 'user_id', 'club_id');
+    }
 
-        return self::create($data);
-    }*/
 }

@@ -56,4 +56,9 @@ class ClubModel extends Model
 
         return $return;
     }
+    public function students()
+    {
+        return $this->belongsToMany(User::class, 'user_clubs', 'club_id', 'user_id');
+    }
+    
 }

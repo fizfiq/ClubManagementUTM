@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <main class="app-main"><!--begin::App Content Header-->
             <div class="app-content-header"><!--begin::Container-->
                 <div class="container-fluid"><!--begin::Row-->
@@ -50,6 +51,7 @@
                             <div class="card card-outline mb-4">
                                 <div class="card-header">
                                     <h3 class="card-title">Join List</h3>
+                                    
                                 </div><!-- /.card-header -->
                                 <div class="card-body">
                                     <table class="table table-bordered">
@@ -62,16 +64,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                          <!--  @foreach($getRecord as $value)
+                                             @foreach($getRecord as $value)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $value->name }}</td>
                                                     <td>
                                                         @if($value->position == 0)
-                                                            Club Members
+                                                            Pending
                                                         @elseif($value->position == 1)
-                                                            Commitee Members
+                                                            Club Members
                                                         @elseif($value->position == 2)
+                                                            Commitee Members
+                                                        @elseif($value->position == 3)
                                                             High Commitee Members
                                                         @endif
                                                     </td>
@@ -79,7 +83,7 @@
                                                     
                                                     </td>
                                                 </tr>
-                                            @endforeach -->
+                                            @endforeach
                                         </tbody>
                                     </table>
                                    
@@ -103,7 +107,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($getRecord as $value)
+                                            @foreach($getClub as $value)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $value->name }}</td>
@@ -117,15 +121,19 @@
                                                     <td> participant </td>
                                                     <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td>
                                                     <td>
-                                                    <a href="#" id="join-button-{{ $value->id }}" class="btn btn-primary" data-club-id="{{ $value->id }}">Join</a>
-                                                    <a href="{{ asset('student/club/detail/'.$value->id) }}" class="btn btn-success">Details</a>
+                                                    <form method="POST" action="{{ url('student/club/join/' . $value->id) }}">
+                                                    {{ csrf_field() }}
+                                                        <button type="submit" class="btn btn-primary">Join</button>
+                                                    </form>
+                                                    <!-- <a href="{{ asset('student/club/detail/'.$value->id) }}" class="btn btn-success">Details</a> -->
                                                     </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
+                                        
                                     </table>
                                     
-                                    <div style="padding: 10px; float: right">
+                                   <div style="padding: 10px; float: right">
                                     {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
                                     </div>
                                 </div><!-- /.card-body -->
@@ -138,20 +146,5 @@
                 </div><!--end::Container-->
             </div><!--end::App Content-->
         </main><!--end::App Main-->
-        <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var joinButtons = document.querySelectorAll('.btn-primary');
-        
-        for (var i = 0; i < joinButtons.length; i++) {
-            joinButtons[i].addEventListener('click', function(event) {
-                event.preventDefault();
-                var clubId = this.getAttribute('data-club-id');
-                
-                if (confirm("Are you sure you want to join this club?")) {
-                    window.location.href = "{{ url('student/club/join') }}/" + clubId;
-                }
-            });
-        }
-    });
-</script>
+ 
 @endsection
