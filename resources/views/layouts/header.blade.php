@@ -99,7 +99,7 @@
                                 <p>Admin</p>
                             </a>
                         </li>
-                        <li class="nav-item"><a href="{{ asset('admin/student/list') }}" class="nav-link " ><i class="nav-icon bi bi-person"></i>
+                        <li class="nav-item"><a href="{{ asset('admin/student/list') }}" class="nav-link " ><i class="nav-icon bi bi-mortarboard"></i>
                                 <p>Student</p>
                             </a>
                         </li>
@@ -123,7 +123,7 @@
                                 <p>Manage Club Information</p>
                             </a>
                         </li> -->
-                        <li class="nav-item"><a href="{{ asset('admin/change_password') }}" class="nav-link " ><i class="nav-icon bi bi-person"></i>
+                        <li class="nav-item"><a href="{{ asset('admin/change_password') }}" class="nav-link " ><i class="nav-icon bi bi-unlock"></i>
                                 <p>Change Password</p>
                             </a>
                         </li>
@@ -141,7 +141,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item"><a href="{{ asset('hep/change_password') }}" class="nav-link " ><i class="nav-icon bi bi-person"></i>
+                        <li class="nav-item"><a href="{{ asset('hep/change_password') }}" class="nav-link " ><i class="nav-icon bi bi-unlock"></i>
                                 <p>Change Password</p>
                             </a>
                         </li>
@@ -170,7 +170,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item"><a href="{{ asset('student/change_password') }}" class="nav-link " ><i class="nav-icon bi bi-person"></i>
+                        <li class="nav-item"><a href="{{ asset('student/change_password') }}" class="nav-link " ><i class="nav-icon bi bi-unlock"></i>
                                 <p>Change Password</p>
                             </a>
                         </li>
@@ -181,7 +181,13 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item"><a href="{{ asset('club/change_password') }}" class="nav-link " ><i class="nav-icon bi bi-person"></i>
+                        <li class="nav-item "><a href="{{ asset('club/member/list') }}" class="nav-link "><i class="nav-icon bi bi-person"></i>
+                                <p>
+                                    Members
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item"><a href="{{ asset('club/change_password') }}" class="nav-link " ><i class="nav-icon bi bi-unlock"></i>
                                 <p>Change Password</p>
                             </a>
                         </li>

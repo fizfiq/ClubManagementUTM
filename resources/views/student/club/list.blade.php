@@ -102,7 +102,6 @@
                                                 <th>Club Name</th>
                                                 <th>Status</th>
                                                 <th>Participant</th>
-                                                <th>Created At</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -119,7 +118,6 @@
                                                         @endif
                                                     </td>
                                                     <td> participant </td>
-                                                    <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td>
                                                     <td>
                                                     <form method="POST" action="{{ url('student/club/join/' . $value->id) }}">
                                                     {{ csrf_field() }}

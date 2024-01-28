@@ -20,14 +20,16 @@ class JoinClubController extends Controller
         $data['header_title'] = "My Club List";
         return view('student.club.list', $data);
     }
-    
+ 
     public function joinClub(Request $request, $id)
     {
         $user = Auth::user();
         $club = ClubModel::getSingle($id);
         $user_club = new UserClubModel;
         $user_club ->user_id = $user->id;
+        $user_club ->memberName = $user->name;
         $user_club->club_id = $club->id;
+        $user_club->created_by = Auth::user()->id;
         $user_club->save();
         
         $club->student_id = $user->id;
@@ -38,4 +40,5 @@ class JoinClubController extends Controller
 
         return redirect('student/club/list')->with('success', "Successfully join the club");
     }
+    
 }

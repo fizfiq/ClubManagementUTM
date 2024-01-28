@@ -62,7 +62,6 @@
                                             <tr>
                                                 <th style="width: 10px">#</th>
                                                 <th>Name</th>
-                                                <th>Status</th>
                                                 <th>Position</th>
                                                 <th>Applied date</th>
                                                 <th>Updated Date</th>
@@ -74,23 +73,21 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $value->name }}</td>
-                                                    <td>{{ $value->type }}</td>
                                                     <td>
-                                                        @if($value->status == 0)
+                                                        @if($value->position == 0)
                                                             Pending
-                                                        @elseif($value->status == 1)
-                                                            Approve
-                                                        @elseif($value->status == 2)
-                                                            Reject
+                                                        @elseif($value->position == 1)
+                                                            Club Member
+                                                        @elseif($value->position == 2)
+                                                            Commitee Member
+                                                        @elseif($value->position == 3)
+                                                            High Commitee Member
                                                         @endif
                                                     </td>
-                                                    <td>{{ $value->comment }}</td>
-                                                    <td>{{ $value->created_by_name }}</td>
                                                     <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td>
                                                     <td>{{ date('d-m-Y H:i A', strtotime($value->updated_at)) }}</td>
                                                     <td>
-                                                    <a href="{{ asset('student/apply/edit/'.$value->id) }}" class="btn btn-primary">Edit</a>
-                                                    <a href="{{ asset('student/apply/delete/'.$value->id) }}" class="btn btn-danger">Delete</a>
+                                                        
                                                     </td>
                                                 </tr>
                                             @endforeach

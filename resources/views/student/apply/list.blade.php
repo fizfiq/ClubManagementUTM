@@ -105,8 +105,10 @@
                                                     <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td>
                                                     <td>{{ date('d-m-Y H:i A', strtotime($value->updated_at)) }}</td>
                                                     <td>
-                                                    <a href="{{ asset('student/apply/edit/'.$value->id) }}" class="btn btn-primary">Edit</a>
-                                                    <a href="{{ asset('student/apply/delete/'.$value->id) }}" class="btn btn-danger">Delete</a>
+                                                    @if($value->status != 1)
+                                                        <a href="{{ asset('student/apply/edit/'.$value->id) }}" class="btn btn-primary">Edit</a>
+                                                        <a href="{{ asset('student/apply/delete/'.$value->id) }}" class="btn btn-danger">Delete</a>
+                                                    @endif
                                                     </td>
                                                 </tr>
                                             @endforeach

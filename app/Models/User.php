@@ -112,7 +112,9 @@ class User extends Authenticatable
     
     public function clubs()
     {
-        return $this->belongsToMany(ClubModel::class, 'user_clubs', 'user_id', 'club_id');
+        return $this->belongsToMany(ClubModel::class, 'user_clubs', 'user_id', 'club_id')
+                    ->withPivot('position') // add any additional pivot table columns here
+                    ->withTimestamps();;
     }
 
 }
