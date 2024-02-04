@@ -141,6 +141,8 @@ Route::group(['middleware' => 'club'], function (){
     Route::get('club/dashboard', [DashboardController::class, 'dashboard']);
     //club member
     Route::get('club/member/list', [MembersController::class, 'memberList']);
+    Route::get('club/member/edit/{id}', [MembersController::class, 'edit']);
+    Route::post('club/member/edit/{id}', [MembersController::class, 'update']);
     
     Route::get('club/change_password', [UserController::class, 'change_password']);
     Route::post('club/change_password', [UserController::class, 'update_change_password']);

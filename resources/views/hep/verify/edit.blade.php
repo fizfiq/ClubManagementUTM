@@ -44,9 +44,10 @@
                                             <label>Status</label>
                                             <select class="form-select" name="status">
                                                 <option value="">Select Status</option>
-                                                <option {{ ($getApply->status == '0') ? 'selected' : '' }} value="Pending">Pending</option>
-                                                <option {{ ($getApply->status == '1') ? 'selected' : '' }} value="Approved">Approved</option>
-                                                <option {{ ($getApply->status == '2') ? 'selected' : '' }} value="Rejected">Rejected</option>
+                                                <option {{ ($getApply->status == '0') ? 'selected' : '' }} value="Submmitted">Submmitted</option>
+                                                <option {{ ($getApply->status == '1') ? 'selected' : '' }} value="Pending">Pending</option>
+                                                <option {{ ($getApply->status == '2') ? 'selected' : '' }} value="Approved">Approved</option>
+                                                <option {{ ($getApply->status == '3') ? 'selected' : '' }} value="Rejected">Rejected</option>
                                             </select>
                                         </div>
                                         <div class="mb-3">

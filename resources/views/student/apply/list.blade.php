@@ -93,10 +93,12 @@
                                                     <td>{{ $value->type }}</td>
                                                     <td>
                                                         @if($value->status == 0)
-                                                            Pending
+                                                            Submmitted
                                                         @elseif($value->status == 1)
-                                                            Approve
+                                                            Pending
                                                         @elseif($value->status == 2)
+                                                            Approve
+                                                        @elseif($value->status == 3)
                                                             Reject
                                                         @endif
                                                     </td>
@@ -105,7 +107,7 @@
                                                     <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td>
                                                     <td>{{ date('d-m-Y H:i A', strtotime($value->updated_at)) }}</td>
                                                     <td>
-                                                    @if($value->status != 1)
+                                                    @if($value->status != 2)
                                                         <a href="{{ asset('student/apply/edit/'.$value->id) }}" class="btn btn-primary">Edit</a>
                                                         <a href="{{ asset('student/apply/delete/'.$value->id) }}" class="btn btn-danger">Delete</a>
                                                     @endif

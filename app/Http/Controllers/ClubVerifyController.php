@@ -37,9 +37,10 @@ class CLubVerifyController extends Controller
         ]);
 
         $statusValues = [
-            'Pending' => 0,
-            'Approved' => 1,
-            'Rejected' => 2,
+            'Submmitted' => 0,
+            'Pending' => 1,
+            'Approved' => 2,
+            'Rejected' => 3,
         ];
 
         if (!array_key_exists($request->status, $statusValues)) {

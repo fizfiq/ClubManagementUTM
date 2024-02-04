@@ -14,11 +14,21 @@ class JoinClubController extends Controller
     public function list(Request $request)
     {
         $user = Auth::user();
-        $data['getRecord'] = $user->clubs()->paginate(10);
-        $data['getRecord']->appends($request->except('page'));
-        $data['getClub'] = ClubModel::getClub();
+        
         $data['header_title'] = "My Club List";
-        return view('student.club.list', $data);
+        
+        $getClub = ClubModel::all();
+        $getRecord = UserClubModel::orderBy('id', 'DESC')->paginate(10);
+
+        // Count the number of participants for each club
+        $clubParticipants = [];
+        foreach ($getClub as $club) {
+            $count = UserClubModel::where('club_id', $club->id)->count();
+            $clubParticipants[$club->id] = $count;
+        }
+
+        // Pass the participant count to the view
+        return view('student.club.list', $data, compact('getRecord', 'getClub', 'clubParticipants'));
     }
  
     public function joinClub(Request $request, $id)
@@ -32,8 +42,6 @@ class JoinClubController extends Controller
         $user_club->created_by = Auth::user()->id;
         $user_club->save();
         
-        $club->student_id = $user->id;
-        $club->save();
         // Update the existing User record to associate it with the new club
         $user->club_id = $club->id;
         $user->save();

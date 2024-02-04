@@ -92,10 +92,12 @@
                                                     <td>{{ $value->type }}</td>
                                                     <td>
                                                         @if($value->status == 0)
-                                                            Pending
+                                                            Submmitted
                                                         @elseif($value->status == 1)
-                                                            Approve
+                                                            Pending
                                                         @elseif($value->status == 2)
+                                                            Approve
+                                                        @elseif($value->status == 3)
                                                             Reject
                                                         @endif
                                                     </td>

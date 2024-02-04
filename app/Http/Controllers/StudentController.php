@@ -70,7 +70,7 @@ class StudentController extends Controller
         $save->is_delete = 1;
         $save->save();
 
-        return redirect()->back()->with('success', "Faculty Successfully Deleted");
+        return redirect()->back()->with('success', "Student Successfully Deleted");
     }
    
 }

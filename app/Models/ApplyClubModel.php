@@ -45,7 +45,7 @@ class ApplyClubModel extends Model
                     }
 
         $return = $return->where('apply_club.is_delete', '=', 0)
-                    ->whereIn('apply_club.status', [0, 1, 2])
+                    ->whereIn('apply_club.status', [0, 1, 2, 3])
                     ->orderBy('apply_club.id', 'desc')
                     ->paginate(10);
 
@@ -74,7 +74,7 @@ class ApplyClubModel extends Model
                     }
 
         $return = $return->where('apply_club.is_delete', '=', 0)
-                    ->whereIn('apply_club.status', [0, 1, 2])
+                    ->whereIn('apply_club.status', [0, 1, 2, 3])
                     ->orderBy('apply_club.id', 'desc')
                     ->paginate(10);
 

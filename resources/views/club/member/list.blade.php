@@ -7,7 +7,7 @@
                 <div class="container-fluid"><!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="mb-0">Member List </h3>
+                            <h3 class="mb-0">Member List (Total : {{ $getRecord->total() }}) </h3>
                         </div>
                         <div class="col-sm-6" style="text-align: right;">
                             <a href="{{ asset('club/member/add') }}" class="btn btn-primary">Add Member</a>
@@ -36,7 +36,7 @@
                                       <div class="row">
                                         <div class="form-group col-md-3">
                                             <label >Name</label>
-                                            <input type="text" class="form-control" name="name" value="{{ Request::get('name') }}" placeholder="Name">
+                                            <input type="text" class="form-control" name="name" value="{{ Request::get('memberName') }}" placeholder="Name">
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label>Date</label>
@@ -69,10 +69,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        
                                         @foreach($getRecord as $value)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $value->name }}</td>
+                                                    <td>{{ $value->memberName }}</td>
                                                     <td>
                                                         @if($value->position == 0)
                                                             Pending
@@ -82,12 +83,14 @@
                                                             Commitee Member
                                                         @elseif($value->position == 3)
                                                             High Commitee Member
+                                                        @elseif($value->position == 4)
+                                                            Reject
                                                         @endif
                                                     </td>
                                                     <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td>
                                                     <td>{{ date('d-m-Y H:i A', strtotime($value->updated_at)) }}</td>
                                                     <td>
-                                                        
+                                                        <a href="{{ asset('club/member/edit/'.$value->id) }}" class="btn btn-primary">Edit</a>
                                                     </td>
                                                 </tr>
                                             @endforeach

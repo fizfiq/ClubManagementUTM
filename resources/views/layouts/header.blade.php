@@ -164,12 +164,12 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item "><a href="{{ asset('student/activity/list') }}" class="nav-link "><i class="nav-icon bi bi-person"></i>
+                        <!--<li class="nav-item "><a href="{{ asset('student/activity/list') }}" class="nav-link "><i class="nav-icon bi bi-person"></i>
                                 <p>
                                     Activity
                                 </p>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item"><a href="{{ asset('student/change_password') }}" class="nav-link " ><i class="nav-icon bi bi-unlock"></i>
                                 <p>Change Password</p>
                             </a>

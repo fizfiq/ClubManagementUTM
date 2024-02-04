@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<?php $rejectedStudents = []; ?>
 
 <main class="app-main"><!--begin::App Content Header-->
             <div class="app-content-header"><!--begin::Container-->
@@ -65,9 +65,14 @@
                                         </thead>
                                         <tbody>
                                              @foreach($getRecord as $value)
+                                                
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $value->name }}</td>
+                                                @foreach($getClub as $club)
+                                                    @if($club->id == $value->club_id)
+                                                    <td>{{ $club->name }}</td>
+                                                   @endif
+                                                @endforeach
                                                     <td>
                                                         @if($value->position == 0)
                                                             Pending
@@ -77,12 +82,16 @@
                                                             Commitee Members
                                                         @elseif($value->position == 3)
                                                             High Commitee Members
+                                                        @elseif($value->position == 4)
+                                                            <?php $rejectedStudents[] = $value->club_id; ?>
+                                                            Rejected
                                                         @endif
                                                     </td>
                                                     <td>
                                                     
                                                     </td>
                                                 </tr>
+                                                
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -117,7 +126,13 @@
                                                             Inactive
                                                         @endif
                                                     </td>
-                                                    <td> participant </td>
+                                                    <td> 
+                                                    @if(in_array($value->id, $rejectedStudents))
+                                                        0
+                                                    @else
+                                                        {{ isset($clubParticipants[$value->id]) ? $clubParticipants[$value->id] : 0 }}
+                                                    @endif
+                                                    </td>
                                                     <td>
                                                     <form method="POST" action="{{ url('student/club/join/' . $value->id) }}">
                                                     {{ csrf_field() }}
